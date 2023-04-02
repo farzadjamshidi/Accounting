@@ -1,1 +1,11 @@
 <p>user works!</p>
+
+<div>
+  {{model.name}}
+</div>
+
+<button [routerLink]="['/user/list']">User List</button>
+
+<button [routerLink]="['edit']">Edit</button>
+
+<button (click)="deleteUser()">Delete</button>
