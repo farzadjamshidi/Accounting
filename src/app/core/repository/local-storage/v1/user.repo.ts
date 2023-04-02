@@ -36,7 +36,7 @@ export class UserV1LocalStorageRepo implements IUserRepo
     return of(newUser);
   }
 
-  edit(model: User): Observable<void>
+  edit(model: User): Observable<boolean>
   {
     const users: User[] = this.get();
     const userIndex = users.findIndex(u => u.id === model.id)!;
@@ -45,17 +45,17 @@ export class UserV1LocalStorageRepo implements IUserRepo
 
     this.set(users);
 
-    return of();
+    return of(true);
   }
 
-  delete(id: string): Observable<void>
+  delete(id: string): Observable<boolean>
   {
     const users: User[] = this.get();
     const newUsers = users.filter(u => u.id !== id)!;
 
     this.set(newUsers);
 
-    return of();
+    return of(true);
   }
 
   private set(model: User[]): void
