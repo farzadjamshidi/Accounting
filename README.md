@@ -35,8 +35,6 @@ ng g c pages/users --change-detection=OnPush --inline-style --inline-template --
 
 ng g c pages/users/user-list --change-detection=OnPush
 
-ng g c pages/users/create-user --change-detection=OnPush
-
-ng g c pages/users/edit-user --change-detection=OnPush --inline-style --inline-template
+ng g c pages/users/create-edit-user --change-detection=OnPush
 
 ng g c pages/users/user --change-detection=OnPush

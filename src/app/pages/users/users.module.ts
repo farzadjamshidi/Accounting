@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { UserV1LocalStorageRepo } from '../../core/repository/local-storage/v1/user.repo';
-import { CreateUserComponent } from './create/create-user.component';
-import { EditUserComponent } from './edit/edit-user.component';
+import { CreateEditUserComponent } from './create-edit/create-edit-user.component';
 import { UserListComponent } from './list/user-list.component';
 import { UserComponent } from './user/user.component';
 import { UsersRoutingModule } from './users-routing.module';
@@ -13,12 +13,12 @@ import { UsersComponent } from './users.component';
   declarations: [
     UsersComponent,
     UserListComponent,
-    CreateUserComponent,
-    EditUserComponent,
+    CreateEditUserComponent,
     UserComponent
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     UsersRoutingModule
   ],
   providers: [
