@@ -25,3 +25,18 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+# Commands
+
+ng g m pages/users --routing
+
+ng g c pages/users --change-detection=OnPush --inline-style --inline-template --skip-tests
+
+ng g c pages/users/user-list --change-detection=OnPush
+
+ng g c pages/users/create-user --change-detection=OnPush
+
+ng g c pages/users/edit-user --change-detection=OnPush --inline-style --inline-template
+
+ng g c pages/users/user --change-detection=OnPush
