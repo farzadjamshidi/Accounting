@@ -1,1 +1,7 @@
 <p>user-list works!</p>
+
+<button [routerLink]="['/user/create']">Create User</button>
+
+<div *ngFor="let user of list$ | async as users" (click)="clickUser(user)">
+  {{user.name || '[no name]'}}
+</div>
