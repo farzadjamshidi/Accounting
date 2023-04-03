@@ -1,10 +1,11 @@
 import { BaseModel } from "./base.model";
-import { User } from "./user.model";
+import { Expense } from "./expense.model";
 
 export class Event extends BaseModel
 {
   name!: string;
   status!: EventStatusEnum;
+  expenses!: Expense[];
 }
 
 export enum EventStatusEnum
@@ -16,7 +17,7 @@ export enum EventStatusEnum
 export class CreateEventRequest
 {
   name!: string;
-  users!: User[];
+  expenses!: Expense[];
 }
 
 export class CreateEventResponse extends Event

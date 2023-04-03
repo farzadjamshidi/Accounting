@@ -26,7 +26,8 @@ export class EventV1LocalStorageRepo implements IEventRepo
     const newEvent: Event = {
       id: new Date().getTime().toString(),
       name: model.name,
-      status: EventStatusEnum.New
+      status: EventStatusEnum.New,
+      expenses: model.expenses
     };
 
     const events: Event[] = this.get();
