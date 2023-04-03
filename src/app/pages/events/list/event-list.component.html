@@ -1,0 +1,7 @@
+<p>event-list works!</p>
+
+<button [routerLink]="['../create']">Create Event</button>
+
+<div *ngFor="let event of list$ | async as events" (click)="clickEvent(event)">
+  {{event.name || '[no name]'}}
+</div>

@@ -1,0 +1,16 @@
+<p>event works!</p>
+
+<ng-container *ngIf="model$ | async as event">
+  <div>
+    {{event.name}}
+  </div>
+
+  <div>Users</div>
+  <!-- <div *ngFor="let user of event.users">{{user.name}}</div> -->
+
+  <button [routerLink]="['event/list']">Event List</button>
+
+  <button [routerLink]="['edit']">Edit</button>
+
+  <button (click)="deleteEvent(event)">Delete</button>
+</ng-container>

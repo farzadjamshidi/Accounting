@@ -1,0 +1,22 @@
+<p *ngIf="createMode">create-event works!</p>
+<p *ngIf="editMode">edit-event works!</p>
+
+<button [routerLink]="['/group/list']">Group List</button>
+<button [routerLink]="['event/list']">Event List</button>
+
+
+<div>
+
+  <div [formGroup]="form">
+    <input type="text" formControlName="name">
+    <select formControlName="status" *ngIf="editMode">
+      <option [value]="EventStatusEnum.New">New</option>
+      <option [value]="EventStatusEnum.Completed">Completed</option>
+    </select>
+  </div>
+
+  <ng-container>
+    <button (click)="save()">Save</button>
+    <button *ngIf="createMode" (click)="saveAndNew()">Save And New</button>
+  </ng-container>
+</div>
