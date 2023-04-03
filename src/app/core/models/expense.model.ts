@@ -5,8 +5,14 @@ import { User } from "./user.model";
 export class Expense extends BaseModel
 {
   name!: string;
-  payers!: User[];
+  payers!: Payer[];
   consumers!: Consumer[];
+  price!: number;
+}
+
+export class Payer
+{
+  user!: User;
   price!: number;
 }
 

@@ -3,6 +3,7 @@ import { Expense } from "./expense.model";
 
 export class Event extends BaseModel
 {
+  groupId!: string;
   name!: string;
   status!: EventStatusEnum;
   expenses!: Expense[];
@@ -16,6 +17,7 @@ export enum EventStatusEnum
 
 export class CreateEventRequest
 {
+  groupId!: string;
   name!: string;
   expenses!: Expense[];
 }
