@@ -1,0 +1,28 @@
+<p *ngIf="createMode">create-group works!</p>
+<p *ngIf="editMode">edit-group works!</p>
+
+<button [routerLink]="['/group/list']">Group List</button>
+
+
+<div>
+
+  <div [formGroup]="form">
+    <input type="text" formControlName="name">
+  </div>
+
+  <ng-container *ngIf="users$ | async as users;">
+    <div *ngFor="let user of users">
+      <input type="checkbox"
+        [(ngModel)]="usersByIdForCheckBox[user.id]"
+        > {{user.name}}
+    </div>
+
+    <!-- <div *ngFor="let user of users;">
+      <input type="checkbox"
+        > {{user.name}}
+    </div> -->
+
+    <button (click)="save(users)">Save</button>
+    <button *ngIf="createMode" (click)="saveAndNew(users)">Save And New</button>
+  </ng-container>
+</div>

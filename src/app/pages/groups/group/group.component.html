@@ -1,0 +1,16 @@
+<p>group works!</p>
+
+<ng-container *ngIf="model$ | async as group">
+  <div>
+    {{group.name}}
+  </div>
+
+  <div>Users</div>
+  <div *ngFor="let user of group.users">{{user.name}}</div>
+
+  <button [routerLink]="['/group/list']">Group List</button>
+
+  <button [routerLink]="['edit']">Edit</button>
+
+  <button (click)="deleteGroup(group)">Delete</button>
+</ng-container>

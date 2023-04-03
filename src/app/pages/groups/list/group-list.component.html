@@ -1,0 +1,7 @@
+<p>group-list works!</p>
+
+<button [routerLink]="['/group/create']">Create Group</button>
+
+<div *ngFor="let group of list$ | async as groups" (click)="clickGroup(group)">
+  {{group.name || '[no name]'}}
+</div>
