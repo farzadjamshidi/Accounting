@@ -1,9 +1,8 @@
 <p>event works!</p>
 
-<ng-container *ngIf="model$ | async as event">
-  <div>
-    {{event.name}}
-  </div>
+<ng-container>
+
+  {{model.name}}
 
   <div>Users</div>
   <!-- <div *ngFor="let user of event.users">{{user.name}}</div> -->
@@ -12,7 +11,16 @@
 
   <button [routerLink]="['edit']">Edit</button>
 
-  <button (click)="deleteEvent(event)">Delete</button>
+  <button (click)="deleteEvent()">Delete</button>
 
   <button [routerLink]="['expense/create-edit']">Expenses</button>
+
+  <button (click)="onCalculate()">Calculate</button>
+
+  <br>
+  <br>
+
+  <div *ngFor="let calculation of calculations">
+    {{calculation.name}} : {{calculation.accounting | currency}}
+  </div>
 </ng-container>
