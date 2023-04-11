@@ -7,5 +7,6 @@ export interface IEventRepo
   getById(id: string): Observable<Event>;
   create(model: CreateEventRequest): Observable<CreateEventResponse>;
   edit(model: Event): Observable<boolean>;
+  patch(model: Partial<Event>): Observable<boolean>;
   delete(id: string): Observable<boolean>;
 }

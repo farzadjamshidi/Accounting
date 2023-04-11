@@ -19,7 +19,7 @@ export class Payer
 export class CreateExpenseRequest
 {
   name!: string;
-  payers!: User[];
+  payers!: Payer[];
   consumers!: Consumer[];
   price!: number;
 }

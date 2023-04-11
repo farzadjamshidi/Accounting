@@ -51,6 +51,21 @@ export class EventV1LocalStorageRepo implements IEventRepo
     return of(true);
   }
 
+  patch(model: Partial<Event>): Observable<boolean>
+  {
+    const events: Event[] = this.get();
+    const eventIndex = events.findIndex(u => u.id === model.id)!;
+
+    events[eventIndex].groupId = model.groupId ?? events[eventIndex].groupId;
+    events[eventIndex].name = model.name ?? events[eventIndex].name;
+    events[eventIndex].status = model.status ?? events[eventIndex].status;
+    events[eventIndex].expenses = model.expenses ?? events[eventIndex].expenses;
+
+    this.set(events);
+
+    return of(true);
+  }
+
   delete(id: string): Observable<boolean>
   {
     const events: Event[] = this.get();
