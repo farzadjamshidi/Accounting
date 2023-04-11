@@ -1,6 +1,5 @@
 import { BaseModel } from "./base.model";
 import { Consumer } from "./consumer.model";
-import { User } from "./user.model";
 
 export class Expense extends BaseModel
 {
@@ -12,7 +11,7 @@ export class Expense extends BaseModel
 
 export class Payer
 {
-  user!: User;
+  userId!: string;
   price!: number;
 }
 

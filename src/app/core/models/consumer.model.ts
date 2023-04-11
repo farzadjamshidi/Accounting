@@ -1,9 +1,8 @@
 import { BaseModel } from "./base.model";
-import { User } from "./user.model";
 
 export class Consumer extends BaseModel
 {
-  user!: User;
+  userId!: string;
   share!: number;
   price!: number;
 }

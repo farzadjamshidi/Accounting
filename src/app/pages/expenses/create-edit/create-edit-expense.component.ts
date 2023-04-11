@@ -74,7 +74,7 @@ export class CreateEditExpenseComponent implements OnInit
       expense?.payers.forEach(payer =>
       {
         const payerForm = new FormGroup({
-          user: new FormControl(payer.user.id),
+          userId: new FormControl(payer.userId),
           price: new FormControl(payer.price)
         });
 
@@ -84,7 +84,7 @@ export class CreateEditExpenseComponent implements OnInit
       expense?.consumers.forEach(consumer =>
       {
         const consumerForm = new FormGroup({
-          user: new FormControl(consumer.user.id),
+          userId: new FormControl(consumer.userId),
           share: new FormControl(consumer.share),
           price: new FormControl(consumer.price)
         });
@@ -140,11 +140,6 @@ export class CreateEditExpenseComponent implements OnInit
     });
 
     (this.expenses.at(expenseIndex).controls["consumers"] as FormArray).push(consumerForm);
-  }
-
-  compareWith(user1: User, user2: User): boolean
-  {
-    return user1.id === user2.id;
   }
 
   async save(): Promise<void>

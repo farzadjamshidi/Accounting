@@ -16,7 +16,7 @@
               <ng-container *ngFor="let payerForm of payers(expenseIndex).controls; let payerIndex = index">
                 <div [formGroup]="payerForm">
                   <!-- <select formControlName="user" [compareWith]="compareWith"> -->
-                  <select formControlName="user">
+                  <select formControlName="userId">
                     <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
                   </select>
                   <input type="number" formControlName="price">
@@ -30,7 +30,7 @@
               <ng-container *ngFor="let consumerForm of consumers(expenseIndex).controls; let consumerIndex = index">
                 <div [formGroup]="consumerForm">
                   <!-- <select formControlName="user" [compareWith]="compareWith"> -->
-                  <select formControlName="user">
+                  <select formControlName="userId">
                     <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
                   </select>
                   <input type="number" formControlName="share">
