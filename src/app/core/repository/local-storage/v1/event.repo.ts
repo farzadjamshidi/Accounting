@@ -14,6 +14,13 @@ export class EventV1LocalStorageRepo implements IEventRepo
     return of(events);
   }
 
+  getAllByGroupId(groupId: string): Observable<Event[]>
+  {
+    const events: Event[] = this.get();
+
+    return of(events.filter(event => event.groupId === groupId));
+  }
+
   getById(id: string): Observable<Event>
   {
     const events: Event[] = this.get();
