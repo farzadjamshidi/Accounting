@@ -119,7 +119,7 @@ export class CreateEditExpenseComponent implements OnInit
   addPayer(expenseIndex: number): void
   {
     const payerForm = new FormGroup({
-      user: new FormControl(),
+      userId: new FormControl(),
       price: new FormControl(0)
     });
 
@@ -134,7 +134,7 @@ export class CreateEditExpenseComponent implements OnInit
   addConsumer(expenseIndex: number): void
   {
     const consumerForm = new FormGroup({
-      user: new FormControl(),
+      userId: new FormControl(),
       share: new FormControl(0),
       price: new FormControl(0)
     });
