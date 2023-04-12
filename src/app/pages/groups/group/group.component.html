@@ -16,4 +16,13 @@
   <button [routerLink]="['edit']">Edit</button>
 
   <button (click)="deleteGroup(group)">Delete</button>
+
+  <button (click)="onCalculate(group)">Calculate</button>
+
+  <br>
+  <br>
+
+  <div *ngFor="let calculation of calculations">
+    {{calculation.name}} : {{calculation.accounting | currency}}
+  </div>
 </ng-container>
