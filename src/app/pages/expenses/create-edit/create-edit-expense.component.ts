@@ -142,6 +142,27 @@ export class CreateEditExpenseComponent implements OnInit
     (this.expenses.at(expenseIndex).controls["consumers"] as FormArray).push(consumerForm);
   }
 
+  equalShare(consumers: FormArray<FormGroup>, expenseForm: FormGroup): void
+  {
+    let totalPrice = 0;
+
+    (expenseForm.controls["payers"] as FormArray<FormGroup>).controls.forEach((payerForm: FormGroup) =>
+    {
+      totalPrice += payerForm.value.price;
+    });
+
+    const eachConsumerShare = 1 / consumers.length;
+    const eachConsumerPrice = totalPrice / consumers.length;
+
+    consumers.controls.forEach((consumerForm: FormGroup) =>
+    {
+      consumerForm.patchValue({
+        share: eachConsumerShare,
+        price: eachConsumerPrice,
+      });
+    });
+  }
+
   async save(): Promise<void>
   {
     const request: Partial<Event> = {
