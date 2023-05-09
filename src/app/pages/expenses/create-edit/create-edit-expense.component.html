@@ -1,6 +1,6 @@
 <p>create-edit-expense works!</p>
 
-<button [routerLink]="['../../']">Event</button>
+<button class="m-2" mat-raised-button color="primary" [routerLink]="['../../']">Event</button>
 
 <ng-container *ngIf="users$ | async as users">
   <div>
@@ -9,49 +9,63 @@
         <ng-container *ngFor="let expenseForm of expenses?.controls; let expenseIndex = index">
           <div [formGroup]="expenseForm">
 
-            <input type="text" formControlName="name">
-            <input type="number" formControlName="price">
+            <mat-form-field appearance="outline">
+              <input matInput type="text" formControlName="name">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <input matInput type="number" formControlName="price">
+            </mat-form-field>
 
             <ng-container formArrayName="payers">
               <ng-container *ngFor="let payerForm of payers(expenseIndex).controls; let payerIndex = index">
                 <div [formGroup]="payerForm">
                   <!-- <select formControlName="user" [compareWith]="compareWith"> -->
-                  <select formControlName="userId">
-                    <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
-                  </select>
-                  <input type="number" formControlName="price">
+                  <mat-form-field appearance="outline">
+                    <mat-select formControlName="userId">
+                      <mat-option *ngFor="let user of users" [value]="user.id">{{user.name}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <input matInput type="number" formControlName="price">
+                  </mat-form-field>
                 </div>
-                <button (click)="deletePayer(expenseIndex,payerIndex)">Delete Payer</button>
+                <button class="m-2" mat-raised-button color="warn" (click)="deletePayer(expenseIndex,payerIndex)">Delete Payer</button>
               </ng-container>
-              <button (click)="addPayer(expenseIndex)">Add Payer</button>
+              <button class="m-2" mat-raised-button color="primary" (click)="addPayer(expenseIndex)">Add Payer</button>
             </ng-container>
 
             <ng-container formArrayName="consumers">
               <ng-container *ngFor="let consumerForm of consumers(expenseIndex).controls; let consumerIndex = index">
                 <div [formGroup]="consumerForm">
                   <!-- <select formControlName="user" [compareWith]="compareWith"> -->
-                  <select formControlName="userId">
-                    <option *ngFor="let user of users" [value]="user.id">{{user.name}}</option>
-                  </select>
-                  <input type="number" formControlName="share">
-                  <input type="number" formControlName="price">
+                  <mat-form-field appearance="outline">
+                    <mat-select formControlName="userId">
+                      <mat-option *ngFor="let user of users" [value]="user.id">{{user.name}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <input matInput type="number" formControlName="share">
+                  </mat-form-field>
+                  <mat-form-field appearance="outline">
+                    <input matInput type="number" formControlName="price">
+                  </mat-form-field>
                 </div>
-                <button (click)="deleteConsumer(expenseIndex,consumerIndex)">Delete Consumer</button>
+                <button class="m-2" mat-raised-button color="warn" (click)="deleteConsumer(expenseIndex,consumerIndex)">Delete Consumer</button>
               </ng-container>
-              <button (click)="addConsumer(expenseIndex)">Add Consumer</button>
-              <button (click)="equalShare(consumers(expenseIndex), expenseForm)">Equal Share</button>
+              <button class="m-2" mat-raised-button color="primary" (click)="addConsumer(expenseIndex)">Add Consumer</button>
+              <button class="m-2" mat-raised-button color="primary" (click)="equalShare(consumers(expenseIndex), expenseForm)">Equal Share</button>
             </ng-container>
 
           </div>
 
-          <button (click)="deleteExpense(expenseIndex)">Delete Expense</button>
+          <button class="m-2" mat-raised-button color="warn" (click)="deleteExpense(expenseIndex)">Delete Expense</button>
         </ng-container>
       </ng-container>
     </div>
 
-    <button (click)="addExpense()">Add Expense</button>
+    <button class="m-2" mat-raised-button color="primary" (click)="addExpense()">Add Expense</button>
 
 
-    <button (click)="save()">Save</button>
+    <button class="m-2" mat-raised-button color="primary" (click)="save()">Save</button>
   </div>
 </ng-container>

@@ -1,6 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { EventV1LocalStorageRepo } from '../../core/repository/local-storage/v1/event.repo';
 import { UserV1LocalStorageRepo } from '../../core/repository/local-storage/v1/user.repo';
 import { CreateEditEventComponent } from './create-edit/create-edit-event.component';
@@ -9,6 +13,12 @@ import { EventsRoutingModule } from './events-routing.module';
 import { EventsComponent } from './events.component';
 import { EventListComponent } from './list/event-list.component';
 
+const MATERIAL_MODULES = [
+  MatButtonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatSelectModule
+];
 
 @NgModule({
   declarations: [
@@ -18,6 +28,7 @@ import { EventListComponent } from './list/event-list.component';
     EventComponent
   ],
   imports: [
+    ...MATERIAL_MODULES,
     CommonModule,
     ReactiveFormsModule,
     FormsModule,

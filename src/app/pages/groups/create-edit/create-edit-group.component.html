@@ -1,13 +1,15 @@
 <p *ngIf="createMode">create-group works!</p>
 <p *ngIf="editMode">edit-group works!</p>
 
-<button [routerLink]="['/group/list']">Group List</button>
+<button class="m-2" mat-raised-button color="primary" [routerLink]="['/group/list']">Group List</button>
 
 
 <div>
 
   <div [formGroup]="form">
-    <input type="text" formControlName="name">
+    <mat-form-field appearance="outline">
+      <input matInput type="text" formControlName="name">
+    </mat-form-field>
   </div>
 
   <ng-container *ngIf="users$ | async as users;">
@@ -22,7 +24,7 @@
         > {{user.name}}
     </div> -->
 
-    <button (click)="save(users)">Save</button>
-    <button *ngIf="createMode" (click)="saveAndNew(users)">Save And New</button>
+    <button class="m-2" mat-raised-button color="primary" (click)="save(users)">Save</button>
+    <button class="m-2" mat-raised-button color="primary" *ngIf="createMode" (click)="saveAndNew(users)">Save And New</button>
   </ng-container>
 </div>

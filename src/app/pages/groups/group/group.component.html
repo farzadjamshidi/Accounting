@@ -8,16 +8,16 @@
   <div>Users</div>
   <div *ngFor="let user of group.users">{{user.name}}</div>
 
-  <button [routerLink]="['/group/list']">Group List</button>
+  <button class="m-2" mat-raised-button color="primary" [routerLink]="['/group/list']">Group List</button>
 
-  <button [routerLink]="['/group/'+ group.id + '/event/create']">Create Event</button>
-  <button [routerLink]="['/group/'+ group.id + '/event/list']">Event List</button>
+  <button class="m-2" mat-raised-button color="primary" [routerLink]="['/group/'+ group.id + '/event/create']">Create Event</button>
+  <button class="m-2" mat-raised-button color="primary" [routerLink]="['/group/'+ group.id + '/event/list']">Event List</button>
 
-  <button [routerLink]="['edit']">Edit</button>
+  <button class="m-2" mat-raised-button color="primary" [routerLink]="['edit']">Edit</button>
 
-  <button (click)="deleteGroup(group)">Delete</button>
+  <button class="m-2" mat-raised-button color="warn" (click)="deleteGroup(group)">Delete</button>
 
-  <button (click)="onCalculate(group)">Calculate</button>
+  <button class="m-2" mat-raised-button color="accent" (click)="onCalculate(group)">Calculate</button>
 
   <br>
   <br>
