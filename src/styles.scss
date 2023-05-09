@@ -1,3 +1,52 @@
 /* You can add global styles to this file, and also import other style files */
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+@for $i from 1 through 100 {
+  .m-#{$i} {
+    margin: ($i * 5px);
+  }
+
+  .ml-#{$i} {
+    margin-left: ($i * 5px);
+  }
+
+  .mr-#{$i} {
+    margin-right: ($i * 5px);
+  }
+
+  .mb-#{$i} {
+    margin-bottom: ($i * 5px);
+  }
+
+  .mt-#{$i} {
+    margin-top: ($i * 5px);
+  }
+
+  .p-#{$i} {
+    padding: ($i * 5px);
+  }
+
+  .pl-#{$i} {
+    padding-left: ($i * 5px);
+  }
+
+  .pr-#{$i} {
+    padding-right: ($i * 5px);
+  }
+
+  .pb-#{$i} {
+    padding-bottom: ($i * 5px);
+  }
+
+  .pt-#{$i} {
+    padding-top: ($i * 5px);
+  }
+}
