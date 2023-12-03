@@ -12,8 +12,7 @@
 3) Generate Angular app with nx g @nx/angular:app accounting-ui (https://nx.dev/nx-api/angular)
 4) Generate NestJS app with nx g @nx/nest:app accounting-api (https://nx.dev/nx-api/nest)
 5) Generate shared library with nx g @nx/js:lib shared-lib (https://nx.dev/nx-api/js/generators/library)
-6) Now you can just manually move your code form your external angular and nestjs apps into newly created monorepo projects and move shared code into shared-lib. In this project we just copy app folder and styles.scss file in src folder.
-npx nx g @angular/material:ng-add --project=accounting-ui
+6) Now you can just manually move your code form your external angular and nestjs apps into newly created monorepo projects and move shared code into shared-lib. In this project we just copy app folder and main.ts,styles.scss and index.html file in src folder. Then move all the files and folders in new-approach\accounting folder to the root folder.
 7) Add concurrently as dependencies npm i concurrently --save-dev
 8) Add scripts to package.json file:
     "scripts": {

@@ -1,0 +1,57 @@
+{
+  "name": "accounting-api",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "accounting-api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "target": "node",
+        "compiler": "tsc",
+        "outputPath": "dist/accounting-api",
+        "main": "accounting-api/src/main.ts",
+        "tsConfig": "accounting-api/tsconfig.app.json",
+        "assets": ["accounting-api/src/assets"],
+        "isolatedConfig": true,
+        "webpackConfig": "accounting-api/webpack.config.js"
+      },
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/js:node",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "accounting-api:build"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "accounting-api:build:development"
+        },
+        "production": {
+          "buildTarget": "accounting-api:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["accounting-api/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "accounting-api/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}

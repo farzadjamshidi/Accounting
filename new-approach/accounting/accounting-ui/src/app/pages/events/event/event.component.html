@@ -1,0 +1,26 @@
+<p>event works!</p>
+
+<ng-container>
+
+  {{model.name}}
+
+  <div>Users</div>
+  <!-- <div *ngFor="let user of event.users">{{user.name}}</div> -->
+
+  <button class="m-2" mat-raised-button color="primary" [routerLink]="['event/list']">Event List</button>
+
+  <button class="m-2" mat-raised-button color="primary" [routerLink]="['edit']">Edit</button>
+
+  <button class="m-2" mat-raised-button color="warn" (click)="deleteEvent()">Delete</button>
+
+  <button class="m-2" mat-raised-button color="primary" [routerLink]="['expense/create-edit']">Expenses</button>
+
+  <button class="m-2" mat-raised-button color="accent" (click)="onCalculate()">Calculate</button>
+
+  <br>
+  <br>
+
+  <div *ngFor="let calculation of calculations">
+    {{calculation.name}} : {{calculation.accounting | currency}}
+  </div>
+</ng-container>
