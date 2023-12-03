@@ -8,16 +8,26 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:application",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/accounting-ui",
         "index": "accounting-ui/src/index.html",
         "browser": "accounting-ui/src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "accounting-ui/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["accounting-ui/src/favicon.ico", "accounting-ui/src/assets"],
-        "styles": ["accounting-ui/src/styles.scss"],
+        "assets": [
+          "accounting-ui/src/favicon.ico",
+          "accounting-ui/src/assets"
+        ],
+        "styles": [
+          "@angular/material/prebuilt-themes/indigo-pink.css",
+          "accounting-ui/src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -64,14 +74,21 @@
     },
     "lint": {
       "executor": "@nx/eslint:lint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["accounting-ui/**/*.ts", "accounting-ui/**/*.html"]
+        "lintFilePatterns": [
+          "accounting-ui/**/*.ts",
+          "accounting-ui/**/*.html"
+        ]
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "accounting-ui/jest.config.ts"
       }
