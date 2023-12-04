@@ -23,6 +23,8 @@
     },
 10) Use npm run serve:all and enjoy developing.
 
+11) Run npm i convict @nestjs/typeorm typeorm pg
+to install TypeORM and postgre db.
 
 # Commands
 
