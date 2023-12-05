@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +14,7 @@ const MATERIAL_MODULES = [MatButtonModule];
   ],
   imports: [
     ...MATERIAL_MODULES,
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule

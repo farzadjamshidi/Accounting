@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { UserV1LocalStorageRepo } from '../../core/repository/local-storage/v1/user.repo';
+import { UserV1BaseServerRepo } from '../../core/repository/base-server/v1/user.repo';
 import { CreateEditUserComponent } from './create-edit/create-edit-user.component';
 import { UserListComponent } from './list/user-list.component';
 import { UserComponent } from './user/user.component';
@@ -31,7 +31,7 @@ const MATERIAL_MODULES = [
     UsersRoutingModule
   ],
   providers: [
-    { provide: 'IUserRepo', useClass: UserV1LocalStorageRepo }
+    { provide: 'IUserRepo', useClass: UserV1BaseServerRepo }
   ]
 })
 export class UsersModule { }
