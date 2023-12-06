@@ -1,5 +1,6 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, ManyToMany } from 'typeorm';
 import { BaseModel } from './base.model';
+import { Group } from './group.model';
 
 @Entity()
 export class User extends BaseModel
@@ -19,9 +20,8 @@ export class User extends BaseModel
   @Column({ default: true })
   isActive: boolean;
 
-  // @ManyToMany(() => Role, role => role.users)
-  // @JoinTable()
-  // roles: Role[];
+  @ManyToMany(() => Group, group => group.users)
+  groups: Group[];
 
   // @OneToMany(() => UserSession, userSession => userSession.user)
   // sessions: UserSession[];
