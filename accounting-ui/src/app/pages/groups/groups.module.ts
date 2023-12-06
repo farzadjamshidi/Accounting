@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { UserV1BaseServerRepo } from '../../core/repository/base-server/v1/user.repo';
 import { EventV1LocalStorageRepo } from '../../core/repository/local-storage/v1/event.repo';
 import { GroupV1LocalStorageRepo } from '../../core/repository/local-storage/v1/group.repo';
-import { UserV1LocalStorageRepo } from '../../core/repository/local-storage/v1/user.repo';
 import { CreateEditGroupComponent } from './create-edit/create-edit-group.component';
 import { GroupComponent } from './group/group.component';
 import { GroupsRoutingModule } from './groups-routing.module';
@@ -36,7 +36,7 @@ const MATERIAL_MODULES = [
   providers: [
     { provide: 'IEventRepo', useClass: EventV1LocalStorageRepo },
     { provide: 'IGroupRepo', useClass: GroupV1LocalStorageRepo },
-    { provide: 'IUserRepo', useClass: UserV1LocalStorageRepo }
+    { provide: 'IUserRepo', useClass: UserV1BaseServerRepo }
   ]
 })
 export class GroupsModule { }
