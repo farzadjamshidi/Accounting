@@ -11,7 +11,7 @@ import { IEventRepo } from '../../../core/repository/interfaces/event.interface'
 })
 export class EventListComponent
 {
-  list$ = this.eventRepo.getAll();
+  list$ = this.eventRepo.getAllByGroupId((this.route.snapshot.parent)!.paramMap.get('groupId')!);
 
   constructor(
     private route: ActivatedRoute,
