@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { Event } from '../app/models/event.model';
+import { EventStatusService } from '../event-status/event-status.service';
 import { GroupsService } from '../groups/groups.service';
 import { CreateEventDto } from './dto/create-event.dto';
 import { UpdateEventDto } from './dto/update-event.dto';
@@ -11,6 +12,7 @@ export class EventsService
 
   constructor(
     private dataSource: DataSource,
+    private eventStatusService: EventStatusService,
     private groupsService: GroupsService
   )
   {
@@ -22,12 +24,14 @@ export class EventsService
     const event = new Event();
     event.name = createEventDto.name;
     event.group = await this.groupsService.findOne(createEventDto.groupId);
+    event.status = await this.eventStatusService.findOne(createEventDto.statusId || 1);
     await this.dataSource.manager.save(event);
 
     return {
       id: event.id,
       name: event.name,
-      group: event.group
+      group: event.group,
+      status: event.status
     };
   }
 
@@ -44,6 +48,7 @@ export class EventsService
     const event = await this.dataSource.manager.findOne(Event, {
       relations: {
         group: true,
+        status: true
       },
       where: { id: id }
     });
