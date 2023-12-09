@@ -8,7 +8,7 @@ export class CalculationHelper
 {
   event(event: Event): { [key: string]: number; }
   {
-    if (event.status == EventStatusEnum.Completed) return {};
+    if (event.statusId == EventStatusEnum.Completed) return {};
 
     const result: { [key: string]: number; } = {};
 
@@ -34,7 +34,7 @@ export class CalculationHelper
 
     events.forEach(event =>
     {
-      if (event.status != EventStatusEnum.Completed)
+      if (event.statusId != EventStatusEnum.Completed)
       {
         event.expenses.forEach(expense =>
         {

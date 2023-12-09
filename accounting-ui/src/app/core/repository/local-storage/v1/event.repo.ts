@@ -34,7 +34,7 @@ export class EventV1LocalStorageRepo implements IEventRepo
       id: new Date().getTime().toString(),
       groupId: model.groupId,
       name: model.name,
-      status: EventStatusEnum.New,
+      statusId: EventStatusEnum.New,
       expenses: model.expenses
     };
 
@@ -65,7 +65,7 @@ export class EventV1LocalStorageRepo implements IEventRepo
 
     events[eventIndex].groupId = model.groupId ?? events[eventIndex].groupId;
     events[eventIndex].name = model.name ?? events[eventIndex].name;
-    events[eventIndex].status = model.status ?? events[eventIndex].status;
+    events[eventIndex].statusId = model.statusId ?? events[eventIndex].statusId;
     events[eventIndex].expenses = model.expenses ?? events[eventIndex].expenses;
 
     this.set(events);

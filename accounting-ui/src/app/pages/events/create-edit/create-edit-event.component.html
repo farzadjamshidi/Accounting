@@ -12,7 +12,7 @@
       <input matInput type="text" formControlName="name">
     </mat-form-field>
     <mat-form-field appearance="outline" *ngIf="editMode">
-      <mat-select formControlName="status">
+      <mat-select formControlName="statusId">
         <mat-option [value]="EventStatusEnum.New">New</mat-option>
         <mat-option [value]="EventStatusEnum.Completed">Completed</mat-option>
       </mat-select>

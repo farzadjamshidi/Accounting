@@ -5,14 +5,14 @@ export class Event extends BaseModel
 {
   groupId!: string;
   name!: string;
-  status!: EventStatusEnum;
+  statusId!: EventStatusEnum;
   expenses!: Expense[];
 }
 
 export enum EventStatusEnum
 {
-  New,
-  Completed
+  New = 1,
+  Completed = 2
 }
 
 export class CreateEventRequest

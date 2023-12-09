@@ -18,7 +18,7 @@ export class CreateEditEventComponent implements OnInit
   editMode = false;
   form: FormGroup = new FormGroup({
     name: new FormControl(''),
-    status: new FormControl(EventStatusEnum.New)
+    statusId: new FormControl(EventStatusEnum.New)
   });
   model!: Event;
   EventStatusEnum = EventStatusEnum;
@@ -46,7 +46,7 @@ export class CreateEditEventComponent implements OnInit
       this.model = await firstValueFrom(this.eventRepo.getById(id));
 
       this.form.controls['name'].setValue(this.model.name);
-      this.form.controls['status'].setValue(this.model.status);
+      this.form.controls['statusId'].setValue(this.model.statusId);
     }
   }
 
@@ -76,7 +76,7 @@ export class CreateEditEventComponent implements OnInit
         id: this.model.id,
         name: this.form.value.name,
         expenses: this.model.expenses,
-        status: this.form.value.status
+        statusId: this.form.value.statusId
       };
       await firstValueFrom(this.eventRepo.edit(request));
       this.router.navigate(['../' + this.model.id], { relativeTo: this.route });
