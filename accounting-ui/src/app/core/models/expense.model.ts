@@ -1,5 +1,6 @@
 import { BaseModel } from "./base.model";
 import { Consumer } from "./consumer.model";
+import { Payer } from "./payer.model";
 
 export class Expense extends BaseModel
 {
@@ -7,12 +8,7 @@ export class Expense extends BaseModel
   payers!: Payer[];
   consumers!: Consumer[];
   price!: number;
-}
-
-export class Payer
-{
-  userId!: string;
-  price!: number;
+  eventId!: number;
 }
 
 export class CreateExpenseRequest
@@ -21,6 +17,7 @@ export class CreateExpenseRequest
   payers!: Payer[];
   consumers!: Consumer[];
   price!: number;
+  eventId!: number;
 }
 
 export class CreateExpenseResponse extends Expense

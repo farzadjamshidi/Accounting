@@ -3,8 +3,10 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, firstValueFrom } from 'rxjs';
 import { Event } from '../../../core/models/event.model';
+import { CreateExpenseRequest, Expense } from '../../../core/models/expense.model';
 import { User } from '../../../core/models/user.model';
 import { IEventRepo } from '../../../core/repository/interfaces/event.interface';
+import { IExpenseRepo } from '../../../core/repository/interfaces/expense.interface';
 import { IUserRepo } from '../../../core/repository/interfaces/user.interface';
 
 @Component({
@@ -37,6 +39,7 @@ export class CreateEditExpenseComponent implements OnInit
   constructor(
     private route: ActivatedRoute,
     private router: Router,
+    @Inject('IExpenseRepo') private expenseRepo: IExpenseRepo,
     @Inject('IEventRepo') private eventRepo: IEventRepo,
     @Inject('IUserRepo') private userRepo: IUserRepo
   )
@@ -165,11 +168,17 @@ export class CreateEditExpenseComponent implements OnInit
 
   async save(): Promise<void>
   {
-    const request: Partial<Event> = {
-      id: this.eventId,
-      expenses: this.form.value.expenses,
-    };
-    await firstValueFrom(this.eventRepo.patch(request));
+    this.form.value.expenses.forEach(async (exp: Expense) =>
+    {
+
+      const request: CreateExpenseRequest = {
+        ...exp,
+        ...{ eventId: +this.eventId }
+      };
+
+      await firstValueFrom(this.expenseRepo.create(request));
+    });
+
     this.router.navigate(['../../'], { relativeTo: this.route });
   }
 }

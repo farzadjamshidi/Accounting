@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { ExpenseV1BaseServerRepo } from '../../core/repository/base-server/v1/expense.repo';
 import { UserV1BaseServerRepo } from '../../core/repository/base-server/v1/user.repo';
 import { EventV1LocalStorageRepo } from '../../core/repository/local-storage/v1/event.repo';
 import { CreateEditExpenseComponent } from './create-edit/create-edit-expense.component';
@@ -31,6 +32,7 @@ const MATERIAL_MODULES = [
     ExpensesRoutingModule
   ],
   providers: [
+    { provide: 'IExpenseRepo', useClass: ExpenseV1BaseServerRepo },
     { provide: 'IEventRepo', useClass: EventV1LocalStorageRepo },
     { provide: 'IUserRepo', useClass: UserV1BaseServerRepo }
   ]
