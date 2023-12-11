@@ -1,6 +1,8 @@
-import { Column, Entity, ManyToMany } from 'typeorm';
+import { Column, Entity, ManyToMany, OneToMany } from 'typeorm';
 import { BaseModel } from './base.model';
+import { Consumer } from './consumer.model';
 import { Group } from './group.model';
+import { Payer } from './payer.model';
 
 @Entity()
 export class User extends BaseModel
@@ -8,24 +10,15 @@ export class User extends BaseModel
   @Column()
   name: string;
 
-  // @Column()
-  // username: string;
-
-  // @Column()
-  // password: string;
-
-  // @Column()
-  // email: string;
-
   @Column({ default: true })
   isActive: boolean;
 
   @ManyToMany(() => Group, group => group.users)
   groups: Group[];
 
-  // @OneToMany(() => UserSession, userSession => userSession.user)
-  // sessions: UserSession[];
+  @OneToMany(() => Consumer, consumer => consumer.user)
+  consumers: Consumer[];
 
-  // @OneToOne(() => Person, person => person.user)
-  // person: Person;
+  @OneToMany(() => Payer, payer => payer.user)
+  payers: Payer[];
 }
