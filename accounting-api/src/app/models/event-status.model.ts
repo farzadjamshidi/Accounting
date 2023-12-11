@@ -9,5 +9,5 @@ export class EventStatus extends BaseModel
   name: string;
 
   @OneToMany(() => Event, event => event.status)
-  event: Event;
+  events: Event[];
 }
