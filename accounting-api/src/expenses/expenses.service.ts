@@ -1,7 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { DataSource } from 'typeorm';
+import { Consumer } from '../app/models/consumer.model';
 import { Expense } from '../app/models/expense.model';
+import { Payer } from '../app/models/payer.model';
+import { ConsumersService } from '../consumers/consumers.service';
 import { EventsService } from '../events/events.service';
+import { PayersService } from '../payers/payers.service';
 import { CreateExpenseDto } from './dto/create-expense.dto';
 import { UpdateExpenseDto } from './dto/update-expense.dto';
 
@@ -11,6 +15,8 @@ export class ExpensesService
 
   constructor(
     private dataSource: DataSource,
+    private consumersService: ConsumersService,
+    private payersService: PayersService,
     private eventsService: EventsService
   )
   {
@@ -24,6 +30,20 @@ export class ExpensesService
     expense.event = await this.eventsService.findOne(createExpenseDto.eventId);
 
     await this.dataSource.manager.save(expense);
+
+    createExpenseDto.consumers.forEach(async (consumer: Consumer) =>
+    {
+      consumer.expenseId = expense.id;
+    });
+
+    await this.consumersService.createMultiple(createExpenseDto.consumers);
+
+    createExpenseDto.payers.forEach((payer: Payer) =>
+    {
+      payer.expenseId = expense.id;
+    });
+
+    await this.payersService.createMultiple(createExpenseDto.payers);
 
     return {
       id: expense.id,
@@ -41,15 +61,15 @@ export class ExpensesService
 
   async findOne(id: number)
   {
-    // const expense = await this.dataSource.manager.findOne(Expense, {
-    //   relations: {
-    //     group: true,
-    //     status: true
-    //   },
-    //   where: { id: id }
-    // });
+    const expense = await this.dataSource.manager.findOne(Expense, {
+      relations: {
+        consumers: true,
+        payers: true
+      },
+      where: { id: id }
+    });
 
-    // return expense;
+    return expense;
   }
 
   async update(id: number, updateExpenseDto: UpdateExpenseDto)
