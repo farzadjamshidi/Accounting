@@ -17,4 +17,7 @@ export class Payer extends BaseModel
 
   @ManyToOne(() => Expense, expense => expense.payers)
   expense: Expense;
+
+  @Column()
+  expenseId: number;
 }

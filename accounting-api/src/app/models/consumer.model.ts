@@ -12,7 +12,7 @@ export class Consumer extends BaseModel
   @Column()
   userId: number;
 
-  @Column()
+  @Column("double precision")
   share: number;
 
   @Column()
@@ -20,4 +20,7 @@ export class Consumer extends BaseModel
 
   @ManyToOne(() => Expense, expense => expense.consumers)
   expense: Expense;
+
+  @Column()
+  expenseId: number;
 }
