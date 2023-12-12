@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { DataSource } from 'typeorm';
 import { Event } from '../app/models/event.model';
+import { ConsumersService } from '../consumers/consumers.service';
 import { EventStatusService } from '../event-status/event-status.service';
 import { GroupsService } from '../groups/groups.service';
+import { PayersService } from '../payers/payers.service';
 import { CreateEventDto } from './dto/create-event.dto';
 import { UpdateEventDto } from './dto/update-event.dto';
 
@@ -13,6 +15,8 @@ export class EventsService
   constructor(
     private dataSource: DataSource,
     private eventStatusService: EventStatusService,
+    private consumersService: ConsumersService,
+    private payersService: PayersService,
     private groupsService: GroupsService
   )
   {
@@ -47,11 +51,18 @@ export class EventsService
   {
     const event = await this.dataSource.manager.findOne(Event, {
       relations: {
+        expenses: true,
         group: true,
         status: true
       },
       where: { id: id }
     });
+
+    for (const expense of event.expenses)
+    {
+      expense.consumers = await this.consumersService.findAllByExpenseId(expense.id);
+      expense.payers = await this.payersService.findAllByExpenseId(expense.id);
+    }
 
     return event;
   }
