@@ -6,7 +6,7 @@ import { Payer } from '../app/models/payer.model';
 import { ConsumersService } from '../consumers/consumers.service';
 import { EventsService } from '../events/events.service';
 import { PayersService } from '../payers/payers.service';
-import { CreateExpenseDto } from './dto/create-expense.dto';
+import { CreateExpensesDto } from './dto/create-expense.dto';
 import { UpdateExpenseDto } from './dto/update-expense.dto';
 
 @Injectable()
@@ -22,33 +22,46 @@ export class ExpensesService
   {
   }
 
-  async create(createExpenseDto: CreateExpenseDto)
+  async create(createExpensesDto: CreateExpensesDto)
   {
-    const expense = new Expense();
-    expense.name = createExpenseDto.name;
-    expense.price = createExpenseDto.price;
-    expense.event = await this.eventsService.findOne(createExpenseDto.eventId);
 
-    await this.dataSource.manager.save(expense);
+    const eventId = createExpensesDto.expenses[0].eventId;
 
-    createExpenseDto.consumers.forEach(async (consumer: Consumer) =>
+    await this.removeByEventId(eventId);
+
+    const result = [];
+
+    for (const createExpenseDto of createExpensesDto.expenses)
     {
-      consumer.expenseId = expense.id;
-    });
 
-    await this.consumersService.createMultiple(createExpenseDto.consumers);
+      const expense = new Expense();
+      expense.name = createExpenseDto.name;
+      expense.price = createExpenseDto.price;
+      expense.event = await this.eventsService.findOne(createExpenseDto.eventId);
 
-    createExpenseDto.payers.forEach((payer: Payer) =>
-    {
-      payer.expenseId = expense.id;
-    });
+      await this.dataSource.manager.save(expense);
 
-    await this.payersService.createMultiple(createExpenseDto.payers);
+      createExpenseDto.consumers.forEach(async (consumer: Consumer) =>
+      {
+        consumer.expenseId = expense.id;
+      });
 
-    return {
-      id: expense.id,
-      name: expense.name
-    };
+      await this.consumersService.createMultiple(createExpenseDto.consumers);
+
+      createExpenseDto.payers.forEach((payer: Payer) =>
+      {
+        payer.expenseId = expense.id;
+      });
+
+      await this.payersService.createMultiple(createExpenseDto.payers);
+
+      result.push({
+        id: expense.id,
+        name: expense.name
+      });
+    }
+
+    return result;
   }
 
   async findAll(groupId: number)
@@ -87,6 +100,16 @@ export class ExpensesService
       Expense,
       {
         id
+      }
+    );
+  }
+
+  async removeByEventId(eventId: number)
+  {
+    return await this.dataSource.manager.delete(
+      Expense,
+      {
+        eventId: eventId
       }
     );
   }

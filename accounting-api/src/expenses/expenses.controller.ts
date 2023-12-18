@@ -9,7 +9,7 @@ import
   Put,
   Query
 } from '@nestjs/common';
-import { CreateExpenseDto } from './dto/create-expense.dto';
+import { CreateExpensesDto } from './dto/create-expense.dto';
 import { UpdateExpenseDto } from './dto/update-expense.dto';
 import { ExpensesService } from './expenses.service';
 
@@ -19,9 +19,9 @@ export class ExpensesController
   constructor(private readonly expensesService: ExpensesService) { }
 
   @Post()
-  create(@Body() createExpenseDto: CreateExpenseDto)
+  create(@Body() createExpensesDto: CreateExpensesDto)
   {
-    return this.expensesService.create(createExpenseDto);
+    return this.expensesService.create(createExpensesDto);
   }
 
   @Get()

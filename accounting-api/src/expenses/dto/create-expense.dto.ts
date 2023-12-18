@@ -9,3 +9,7 @@ export class CreateExpenseDto
   price: number;
   eventId: number;
 }
+export class CreateExpensesDto
+{
+  expenses: CreateExpenseDto[];
+}
