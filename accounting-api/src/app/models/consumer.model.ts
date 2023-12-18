@@ -15,10 +15,12 @@ export class Consumer extends BaseModel
   @Column("double precision")
   share: number;
 
-  @Column()
+  @Column("double precision")
   price: number;
 
-  @ManyToOne(() => Expense, expense => expense.consumers)
+  @ManyToOne(() => Expense, expense => expense.consumers, {
+    onDelete: "CASCADE"
+  })
   expense: Expense;
 
   @Column()

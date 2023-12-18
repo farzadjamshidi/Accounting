@@ -16,7 +16,7 @@ export class Expense extends BaseModel
   @OneToMany(() => Payer, payer => payer.user)
   payers: Payer[];
 
-  @Column()
+  @Column("double precision")
   price: number;
 
   @ManyToOne(() => Event, event => event.expenses)

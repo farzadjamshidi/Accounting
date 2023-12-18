@@ -12,10 +12,12 @@ export class Payer extends BaseModel
   @Column()
   userId: number;
 
-  @Column()
+  @Column("double precision")
   price: number;
 
-  @ManyToOne(() => Expense, expense => expense.payers)
+  @ManyToOne(() => Expense, expense => expense.payers, {
+    onDelete: "CASCADE"
+  })
   expense: Expense;
 
   @Column()
