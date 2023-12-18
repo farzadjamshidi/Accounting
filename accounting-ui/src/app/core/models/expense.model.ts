@@ -20,6 +20,11 @@ export class CreateExpenseRequest
   eventId!: number;
 }
 
+export class CreateMultipleExpenseRequest
+{
+  expenses!: CreateExpenseRequest[];
+}
+
 export class CreateExpenseResponse extends Expense
 {
 }

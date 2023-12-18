@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, of } from 'rxjs';
-import { CreateExpenseRequest, CreateExpenseResponse, Expense } from "../../../models/expense.model";
+import { CreateExpenseResponse, CreateMultipleExpenseRequest, Expense } from "../../../models/expense.model";
 import { IExpenseRepo } from "../../interfaces/expense.interface";
 
 @Injectable()
@@ -30,7 +30,7 @@ export class ExpenseV1BaseServerRepo implements IExpenseRepo
     return of(expense);
   }
 
-  create(model: CreateExpenseRequest): Observable<CreateExpenseResponse>
+  create(model: CreateMultipleExpenseRequest): Observable<CreateExpenseResponse>
   {
     const apiUrl = this.repoUrl;
     return this.http.post<CreateExpenseResponse>(apiUrl, model);

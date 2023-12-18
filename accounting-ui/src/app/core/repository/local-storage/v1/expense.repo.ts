@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable, of } from 'rxjs';
-import { CreateExpenseRequest, CreateExpenseResponse, Expense } from "../../../models/expense.model";
+import { CreateExpenseResponse, CreateMultipleExpenseRequest, Expense } from "../../../models/expense.model";
 import { IExpenseRepo } from "../../interfaces/expense.interface";
 
 @Injectable()
@@ -21,22 +21,23 @@ export class ExpenseV1LocalStorageRepo implements IExpenseRepo
     return of(expense);
   }
 
-  create(model: CreateExpenseRequest): Observable<CreateExpenseResponse>
+  create(model: CreateMultipleExpenseRequest): Observable<CreateExpenseResponse>
   {
-    const newExpense: Expense = {
-      id: new Date().getTime().toString(),
-      name: model.name,
-      consumers: model.consumers,
-      payers: model.payers,
-      price: model.price
-    };
+    // const newExpense: Expense = {
+    //   id: new Date().getTime().toString(),
+    //   name: model.name,
+    //   consumers: model.consumers,
+    //   payers: model.payers,
+    //   price: model.price
+    // };
 
-    const expenses: Expense[] = this.get();
-    expenses.push(newExpense);
+    // const expenses: Expense[] = this.get();
+    // expenses.push(newExpense);
 
-    this.set(expenses);
+    // this.set(expenses);
 
-    return of(newExpense);
+    // return of(newExpense);
+    return of();
   }
 
   edit(model: Expense): Observable<boolean>

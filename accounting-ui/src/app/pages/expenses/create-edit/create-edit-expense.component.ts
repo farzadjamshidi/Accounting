@@ -3,7 +3,7 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, firstValueFrom } from 'rxjs';
 import { Event } from '../../../core/models/event.model';
-import { CreateExpenseRequest, Expense } from '../../../core/models/expense.model';
+import { CreateMultipleExpenseRequest, Expense } from '../../../core/models/expense.model';
 import { User } from '../../../core/models/user.model';
 import { IEventRepo } from '../../../core/repository/interfaces/event.interface';
 import { IExpenseRepo } from '../../../core/repository/interfaces/expense.interface';
@@ -168,16 +168,17 @@ export class CreateEditExpenseComponent implements OnInit
 
   async save(): Promise<void>
   {
-    this.form.value.expenses.forEach(async (exp: Expense) =>
-    {
+    const request: CreateMultipleExpenseRequest = {
+      expenses: this.form.value.expenses.map((exp: Expense) =>
+      {
+        return {
+          ...exp,
+          ...{ eventId: +this.eventId }
+        };
+      })
+    };
 
-      const request: CreateExpenseRequest = {
-        ...exp,
-        ...{ eventId: +this.eventId }
-      };
-
-      await firstValueFrom(this.expenseRepo.create(request));
-    });
+    await firstValueFrom(this.expenseRepo.create(request));
 
     this.router.navigate(['../../'], { relativeTo: this.route });
   }

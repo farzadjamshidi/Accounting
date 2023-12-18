@@ -53,7 +53,7 @@ export class EventComponent implements OnInit
     Object.keys(calculationsById).forEach((id: string) =>
     {
       calculations.push({
-        name: this.users.find(user => user.id === id)!.name,
+        name: this.users.find(user => user.id == id)!.name, // TODO: we need to change id to number to be the same as DB
         accounting: calculationsById[id]
       });
     });
