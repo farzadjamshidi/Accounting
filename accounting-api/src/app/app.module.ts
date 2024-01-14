@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
 
+import { APP_GUARD } from '@nestjs/core';
+import { AuthGuard } from '../auth/auth.guard';
 import { ConsumersModule } from '../consumers/consumers.module';
 import { EventStatusModule } from '../event-status/event-status.module';
 import { EventsModule } from '../events/events.module';
@@ -26,6 +28,12 @@ const appModules = [
     CoreModule
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
+  ],
 })
 export class AppModule { }
