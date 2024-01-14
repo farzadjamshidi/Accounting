@@ -5,8 +5,10 @@ import { Expense } from "../../models/expense.model";
 import { Group } from "../../models/group.model";
 import { Member } from "../../models/member.model";
 import { Payer } from "../../models/payer.model";
+import { User } from "../../models/user.model";
 
 export const entities = [
+  User,
   Consumer,
   Payer,
   Expense,

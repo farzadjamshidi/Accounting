@@ -37,6 +37,20 @@ export class UsersService
         id: id
       }
     );
+
+    const { password, ...userWithoutPassword } = user;
+
+    return userWithoutPassword;
+  }
+
+  async findOneByEmail(email: string)
+  {
+    const user = await this.dataSource.manager.findOneBy<User>(
+      User,
+      {
+        email: email
+      }
+    );
     return user;
   }
 
