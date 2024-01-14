@@ -9,6 +9,18 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+.d-flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.align-items-start {
+  align-items: flex-start;
+}
+
 @for $i from 1 through 100 {
   .m-#{$i} {
     margin: ($i * 5px);

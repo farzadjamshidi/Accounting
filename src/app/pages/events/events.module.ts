@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { EventV1LocalStorageRepo } from '../../core/repository/local-storage/v1/event.repo';
-import { UserV1LocalStorageRepo } from '../../core/repository/local-storage/v1/user.repo';
+import { MemberV1LocalStorageRepo } from '../../core/repository/local-storage/v1/member.repo';
 import { CreateEditEventComponent } from './create-edit/create-edit-event.component';
 import { EventComponent } from './event/event.component';
 import { EventsRoutingModule } from './events-routing.module';
@@ -36,7 +36,7 @@ const MATERIAL_MODULES = [
   ],
   providers: [
     { provide: 'IEventRepo', useClass: EventV1LocalStorageRepo },
-    { provide: 'IUserRepo', useClass: UserV1LocalStorageRepo }
+    { provide: 'IMemberRepo', useClass: MemberV1LocalStorageRepo }
   ]
 })
 export class EventsModule { }

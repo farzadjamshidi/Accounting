@@ -1,0 +1,9 @@
+<p>Member List</p>
+
+<button class="m-2" mat-raised-button color="primary" [routerLink]="['/member/create']">Create Member</button>
+
+<div class="d-flex flex-column align-items-start">
+  <button class="m-1" mat-stroked-button *ngFor="let member of list$ | async as members" (click)="clickMember(member)">
+    {{member.name || '[no name]'}}
+  </button>
+</div>

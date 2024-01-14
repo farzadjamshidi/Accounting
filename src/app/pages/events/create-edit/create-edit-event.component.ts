@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { CreateEventRequest, Event, EventStatusEnum } from '../../../core/models/event.model';
 import { IEventRepo } from '../../../core/repository/interfaces/event.interface';
-import { IUserRepo } from '../../../core/repository/interfaces/user.interface';
+import { IMemberRepo } from '../../../core/repository/interfaces/member.interface';
 
 @Component({
   selector: 'app-create-edit-event',
@@ -28,7 +28,7 @@ export class CreateEditEventComponent implements OnInit
     private route: ActivatedRoute,
     private router: Router,
     @Inject('IEventRepo') private eventRepo: IEventRepo,
-    @Inject('IUserRepo') private userRepo: IUserRepo
+    @Inject('IMemberRepo') private memberRepo: IMemberRepo
   )
   {
     this.groupId = this.route.parent?.snapshot.paramMap.get('groupId')!;

@@ -1,11 +1,12 @@
-<p>event works!</p>
+<p>Event Page</p>
 
 <ng-container>
 
-  {{model.name}}
-
-  <div>Users</div>
-  <!-- <div *ngFor="let user of event.users">{{user.name}}</div> -->
+  <div>
+    <button class="m-1" mat-stroked-button>
+      {{model.name}}
+    </button>
+  </div>
 
   <button class="m-2" mat-raised-button color="primary" [routerLink]="['event/list']">Event List</button>
 

@@ -1,9 +1,7 @@
-<p *ngIf="createMode">create-event works!</p>
-<p *ngIf="editMode">edit-event works!</p>
+<p *ngIf="createMode">Create Event</p>
+<p *ngIf="editMode">Edit Event</p>
 
-<button class="m-2" mat-raised-button color="primary" [routerLink]="['/group/list']">Group List</button>
 <button class="m-2" mat-raised-button color="primary" [routerLink]="['event/list']">Event List</button>
-
 
 <div>
 
@@ -12,7 +10,7 @@
       <input matInput type="text" formControlName="name">
     </mat-form-field>
     <mat-form-field appearance="outline" *ngIf="editMode">
-      <mat-select formControlName="status">
+      <mat-select formControlName="statusId">
         <mat-option [value]="EventStatusEnum.New">New</mat-option>
         <mat-option [value]="EventStatusEnum.Completed">Completed</mat-option>
       </mat-select>

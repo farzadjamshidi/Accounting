@@ -16,11 +16,11 @@ export class CalculationHelper
     {
       expense.payers.forEach(payer =>
       {
-        result[payer.userId] = (result[payer.userId] ? result[payer.userId] : 0) + payer.price;
+        result[payer.memberId] = (result[payer.memberId] ? result[payer.memberId] : 0) + payer.price;
       });
       expense.consumers.forEach(consumer =>
       {
-        result[consumer.userId] = (result[consumer.userId] ? result[consumer.userId] : 0) - consumer.price;
+        result[consumer.memberId] = (result[consumer.memberId] ? result[consumer.memberId] : 0) - consumer.price;
       });
     });
 
@@ -40,11 +40,11 @@ export class CalculationHelper
         {
           expense.payers.forEach(payer =>
           {
-            result[payer.userId] = (result[payer.userId] ? result[payer.userId] : 0) + payer.price;
+            result[payer.memberId] = (result[payer.memberId] ? result[payer.memberId] : 0) + payer.price;
           });
           expense.consumers.forEach(consumer =>
           {
-            result[consumer.userId] = (result[consumer.userId] ? result[consumer.userId] : 0) - consumer.price;
+            result[consumer.memberId] = (result[consumer.memberId] ? result[consumer.memberId] : 0) - consumer.price;
           });
         });
       }

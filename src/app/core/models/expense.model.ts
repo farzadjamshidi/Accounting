@@ -11,7 +11,7 @@ export class Expense extends BaseModel
 
 export class Payer
 {
-  userId!: string;
+  memberId!: string;
   price!: number;
 }
 

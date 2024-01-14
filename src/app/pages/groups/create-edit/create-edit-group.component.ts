@@ -3,9 +3,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { CreateGroupRequest, Group } from '../../../core/models/group.model';
-import { User } from '../../../core/models/user.model';
+import { Member } from '../../../core/models/member.model';
 import { IGroupRepo } from '../../../core/repository/interfaces/group.interface';
-import { IUserRepo } from '../../../core/repository/interfaces/user.interface';
+import { IMemberRepo } from '../../../core/repository/interfaces/member.interface';
 
 @Component({
   selector: 'app-create-edit-group',
@@ -21,14 +21,14 @@ export class CreateEditGroupComponent implements OnInit
     name: new FormControl('')
   });
   model!: Group;
-  users$ = this.userRepo.getAll();
-  usersByIdForCheckBox: { [key: string]: boolean; } = {};
+  members$ = this.memberRepo.getAll();
+  membersByIdForCheckBox: { [key: string]: boolean; } = {};
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     @Inject('IGroupRepo') private groupRepo: IGroupRepo,
-    @Inject('IUserRepo') private userRepo: IUserRepo
+    @Inject('IMemberRepo') private memberRepo: IMemberRepo
   )
   {
   }
@@ -46,28 +46,28 @@ export class CreateEditGroupComponent implements OnInit
 
       this.form.controls['name'].setValue(this.model.name);
 
-      this.model.users.map((user) =>
+      this.model.members.map((member) =>
       {
-        this.usersByIdForCheckBox[user.id] = true;
+        this.membersByIdForCheckBox[member.id] = true;
       });
     }
   }
 
-  private async createGroup(users: User[]): Promise<Group>
+  private async createGroup(members: Member[]): Promise<Group>
   {
     const request: CreateGroupRequest = {
       name: this.form.value.name,
-      users: users.filter(user => this.usersByIdForCheckBox[user.id])
+      members: members.filter(member => this.membersByIdForCheckBox[member.id])
     };
 
     return await firstValueFrom(this.groupRepo.create(request));
   }
 
-  async save(users: User[]): Promise<void>
+  async save(members: Member[]): Promise<void>
   {
     if (this.createMode)
     {
-      const response = await this.createGroup(users);
+      const response = await this.createGroup(members);
       this.router.navigate(['group/' + response.id]);
     }
 
@@ -76,16 +76,16 @@ export class CreateEditGroupComponent implements OnInit
       const request: Group = {
         id: this.model.id,
         name: this.form.value.name,
-        users: users.filter(user => this.usersByIdForCheckBox[user.id])
+        members: members.filter(member => this.membersByIdForCheckBox[member.id])
       };
       await firstValueFrom(this.groupRepo.edit(request));
       this.router.navigate(['group/' + this.model.id]);
     }
   }
 
-  async saveAndNew(users: User[]): Promise<void>
+  async saveAndNew(members: Member[]): Promise<void>
   {
-    await this.createGroup(users);
+    await this.createGroup(members);
     this.form.reset();
   }
 }

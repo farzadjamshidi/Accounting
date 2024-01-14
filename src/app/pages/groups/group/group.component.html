@@ -1,12 +1,17 @@
-<p>group works!</p>
+<p>Group Page</p>
 
 <ng-container *ngIf="model$ | async as group">
-  <div>
+  <button class="m-1" mat-stroked-button>
     {{group.name}}
-  </div>
+  </button>
 
-  <div>Users</div>
-  <div *ngFor="let user of group.users">{{user.name}}</div>
+  <div class="mt-2">Members:</div>
+
+  <div class="d-flex flex-column align-items-start">
+    <button class="m-1" mat-stroked-button *ngFor="let member of group.members">
+      {{member.name || '[no name]'}}
+    </button>
+  </div>
 
   <button class="m-2" mat-raised-button color="primary" [routerLink]="['/group/list']">Group List</button>
 

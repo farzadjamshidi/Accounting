@@ -1,5 +1,5 @@
-<p *ngIf="createMode">create-group works!</p>
-<p *ngIf="editMode">edit-group works!</p>
+<p *ngIf="createMode">Create Group</p>
+<p *ngIf="editMode">Edit Group</p>
 
 <button class="m-2" mat-raised-button color="primary" [routerLink]="['/group/list']">Group List</button>
 
@@ -12,19 +12,14 @@
     </mat-form-field>
   </div>
 
-  <ng-container *ngIf="users$ | async as users;">
-    <div *ngFor="let user of users">
-      <input type="checkbox"
-        [(ngModel)]="usersByIdForCheckBox[user.id]"
-        > {{user.name}}
+  <ng-container *ngIf="members$ | async as members;">
+    <div *ngFor="let member of members">
+      <mat-checkbox class="example-margin" [(ngModel)]="membersByIdForCheckBox[member.id]">
+        {{member.name}}
+      </mat-checkbox>
     </div>
 
-    <!-- <div *ngFor="let user of users;">
-      <input type="checkbox"
-        > {{user.name}}
-    </div> -->
-
-    <button class="m-2" mat-raised-button color="primary" (click)="save(users)">Save</button>
-    <button class="m-2" mat-raised-button color="primary" *ngIf="createMode" (click)="saveAndNew(users)">Save And New</button>
+    <button class="m-2" mat-raised-button color="primary" (click)="save(members)">Save</button>
+    <button class="m-2" mat-raised-button color="primary" *ngIf="createMode" (click)="saveAndNew(members)">Save And New</button>
   </ng-container>
 </div>

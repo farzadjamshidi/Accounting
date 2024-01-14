@@ -47,7 +47,7 @@ export class GroupComponent
     Object.keys(calculationsById).forEach((id: string) =>
     {
       calculations.push({
-        name: group.users.find(user => user.id === id)!.name,
+        name: group.members.find(member => member.id === id)!.name,
         accounting: calculationsById[id]
       });
     });

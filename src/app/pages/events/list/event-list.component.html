@@ -1,7 +1,9 @@
-<p>event-list works!</p>
+<p>Event List</p>
 
 <button class="m-2" mat-raised-button color="primary" [routerLink]="['../create']">Create Event</button>
 
-<div *ngFor="let event of list$ | async as events" (click)="clickEvent(event)">
-  {{event.name || '[no name]'}}
+<div class="d-flex flex-column align-items-start">
+  <button class="m-1" mat-stroked-button *ngFor="let event of list$ | async as events" (click)="clickEvent(event)">
+    {{event.name || '[no name]'}}
+  </button>
 </div>

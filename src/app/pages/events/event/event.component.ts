@@ -3,9 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { CalculationHelper } from '../../../core/helpers/calculation.helper';
 import { Event } from '../../../core/models/event.model';
-import { User } from '../../../core/models/user.model';
+import { Member } from '../../../core/models/member.model';
 import { IEventRepo } from '../../../core/repository/interfaces/event.interface';
-import { IUserRepo } from '../../../core/repository/interfaces/user.interface';
+import { IMemberRepo } from '../../../core/repository/interfaces/member.interface';
 
 @Component({
   selector: 'app-event',
@@ -17,14 +17,14 @@ export class EventComponent implements OnInit
 {
   calculations!: { name: string; accounting: number; }[];
   model!: Event;
-  users!: User[];
+  members!: Member[];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private calculationHelper: CalculationHelper,
     @Inject('IEventRepo') private eventRepo: IEventRepo,
-    @Inject('IUserRepo') private userRepo: IUserRepo
+    @Inject('IMemberRepo') private memberRepo: IMemberRepo
   )
   {
   }
@@ -35,7 +35,7 @@ export class EventComponent implements OnInit
 
     this.model = await firstValueFrom(this.eventRepo.getById(id));
 
-    this.users = await firstValueFrom(this.userRepo.getAll());
+    this.members = await firstValueFrom(this.memberRepo.getAll());
   }
 
   async deleteEvent(): Promise<void>
@@ -53,7 +53,7 @@ export class EventComponent implements OnInit
     Object.keys(calculationsById).forEach((id: string) =>
     {
       calculations.push({
-        name: this.users.find(user => user.id === id)!.name,
+        name: this.members.find(member => member.id === id)!.name,
         accounting: calculationsById[id]
       });
     });
