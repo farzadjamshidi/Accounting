@@ -25,7 +25,7 @@ export class GroupV1LocalStorageRepo implements IGroupRepo
   {
     const newGroup: Group = {
       id: new Date().getTime().toString(),
-      users: model.users,
+      members: model.members,
       name: model.name
     };
 

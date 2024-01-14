@@ -4,10 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, firstValueFrom } from 'rxjs';
 import { Event } from '../../../core/models/event.model';
 import { CreateMultipleExpenseRequest, Expense } from '../../../core/models/expense.model';
-import { User } from '../../../core/models/user.model';
+import { Member } from '../../../core/models/member.model';
 import { IEventRepo } from '../../../core/repository/interfaces/event.interface';
 import { IExpenseRepo } from '../../../core/repository/interfaces/expense.interface';
-import { IUserRepo } from '../../../core/repository/interfaces/user.interface';
+import { IMemberRepo } from '../../../core/repository/interfaces/member.interface';
 
 @Component({
   selector: 'app-create-edit-expense',
@@ -32,7 +32,7 @@ export class CreateEditExpenseComponent implements OnInit
   {
     return this.expenses.at(index).controls["consumers"] as FormArray<FormGroup>;
   }
-  users$!: Observable<User[]>;
+  members$!: Observable<Member[]>;
   model!: Event;
   eventId: string;
 
@@ -41,11 +41,11 @@ export class CreateEditExpenseComponent implements OnInit
     private router: Router,
     @Inject('IExpenseRepo') private expenseRepo: IExpenseRepo,
     @Inject('IEventRepo') private eventRepo: IEventRepo,
-    @Inject('IUserRepo') private userRepo: IUserRepo
+    @Inject('IMemberRepo') private memberRepo: IMemberRepo
   )
   {
     this.eventId = this.route.parent?.snapshot.paramMap.get('eventId')!;
-    this.users$ = this.userRepo.getAll();
+    this.members$ = this.memberRepo.getAll();
   }
 
   async ngOnInit(): Promise<void>
@@ -77,7 +77,7 @@ export class CreateEditExpenseComponent implements OnInit
       expense?.payers.forEach(payer =>
       {
         const payerForm = new FormGroup({
-          userId: new FormControl(payer.userId),
+          memberId: new FormControl(payer.memberId),
           price: new FormControl(payer.price)
         });
 
@@ -87,7 +87,7 @@ export class CreateEditExpenseComponent implements OnInit
       expense?.consumers.forEach(consumer =>
       {
         const consumerForm = new FormGroup({
-          userId: new FormControl(consumer.userId),
+          memberId: new FormControl(consumer.memberId),
           share: new FormControl(consumer.share),
           price: new FormControl(consumer.price)
         });
@@ -122,7 +122,7 @@ export class CreateEditExpenseComponent implements OnInit
   addPayer(expenseIndex: number): void
   {
     const payerForm = new FormGroup({
-      userId: new FormControl(),
+      memberId: new FormControl(),
       price: new FormControl(0)
     });
 
@@ -137,7 +137,7 @@ export class CreateEditExpenseComponent implements OnInit
   addConsumer(expenseIndex: number): void
   {
     const consumerForm = new FormGroup({
-      userId: new FormControl(),
+      memberId: new FormControl(),
       share: new FormControl(0),
       price: new FormControl(0)
     });

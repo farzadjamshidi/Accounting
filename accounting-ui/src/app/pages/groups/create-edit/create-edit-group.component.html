@@ -12,19 +12,19 @@
     </mat-form-field>
   </div>
 
-  <ng-container *ngIf="users$ | async as users;">
-    <div *ngFor="let user of users">
+  <ng-container *ngIf="members$ | async as members;">
+    <div *ngFor="let member of members">
       <input type="checkbox"
-        [(ngModel)]="usersByIdForCheckBox[user.id]"
-        > {{user.name}}
+        [(ngModel)]="membersByIdForCheckBox[member.id]"
+        > {{member.name}}
     </div>
 
-    <!-- <div *ngFor="let user of users;">
+    <!-- <div *ngFor="let member of members;">
       <input type="checkbox"
-        > {{user.name}}
+        > {{member.name}}
     </div> -->
 
-    <button class="m-2" mat-raised-button color="primary" (click)="save(users)">Save</button>
-    <button class="m-2" mat-raised-button color="primary" *ngIf="createMode" (click)="saveAndNew(users)">Save And New</button>
+    <button class="m-2" mat-raised-button color="primary" (click)="save(members)">Save</button>
+    <button class="m-2" mat-raised-button color="primary" *ngIf="createMode" (click)="saveAndNew(members)">Save And New</button>
   </ng-container>
 </div>

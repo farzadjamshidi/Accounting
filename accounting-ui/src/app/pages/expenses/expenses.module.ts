@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { EventV1BaseServerRepo } from '../../core/repository/base-server/v1/event.repo';
 import { ExpenseV1BaseServerRepo } from '../../core/repository/base-server/v1/expense.repo';
-import { UserV1BaseServerRepo } from '../../core/repository/base-server/v1/user.repo';
+import { MemberV1BaseServerRepo } from '../../core/repository/base-server/v1/member.repo';
 import { CreateEditExpenseComponent } from './create-edit/create-edit-expense.component';
 import { ExpensesRoutingModule } from './expenses-routing.module';
 import { ExpensesComponent } from './expenses.component';
@@ -34,7 +34,7 @@ const MATERIAL_MODULES = [
   providers: [
     { provide: 'IExpenseRepo', useClass: ExpenseV1BaseServerRepo },
     { provide: 'IEventRepo', useClass: EventV1BaseServerRepo },
-    { provide: 'IUserRepo', useClass: UserV1BaseServerRepo }
+    { provide: 'IMemberRepo', useClass: MemberV1BaseServerRepo }
   ]
 })
 export class ExpensesModule { }

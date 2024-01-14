@@ -2,7 +2,7 @@
 
 <button class="m-2" mat-raised-button color="primary" [routerLink]="['../../']">Event</button>
 
-<ng-container *ngIf="users$ | async as users">
+<ng-container *ngIf="members$ | async as members">
   <div>
     <div [formGroup]="form">
       <ng-container formArrayName="expenses">
@@ -19,10 +19,10 @@
             <ng-container formArrayName="payers">
               <ng-container *ngFor="let payerForm of payers(expenseIndex).controls; let payerIndex = index">
                 <div [formGroup]="payerForm">
-                  <!-- <select formControlName="user" [compareWith]="compareWith"> -->
+                  <!-- <select formControlName="member" [compareWith]="compareWith"> -->
                   <mat-form-field appearance="outline">
-                    <mat-select formControlName="userId">
-                      <mat-option *ngFor="let user of users" [value]="user.id">{{user.name}}</mat-option>
+                    <mat-select formControlName="memberId">
+                      <mat-option *ngFor="let member of members" [value]="member.id">{{member.name}}</mat-option>
                     </mat-select>
                   </mat-form-field>
                   <mat-form-field appearance="outline">
@@ -37,10 +37,10 @@
             <ng-container formArrayName="consumers">
               <ng-container *ngFor="let consumerForm of consumers(expenseIndex).controls; let consumerIndex = index">
                 <div [formGroup]="consumerForm">
-                  <!-- <select formControlName="user" [compareWith]="compareWith"> -->
+                  <!-- <select formControlName="member" [compareWith]="compareWith"> -->
                   <mat-form-field appearance="outline">
-                    <mat-select formControlName="userId">
-                      <mat-option *ngFor="let user of users" [value]="user.id">{{user.name}}</mat-option>
+                    <mat-select formControlName="memberId">
+                      <mat-option *ngFor="let member of members" [value]="member.id">{{member.name}}</mat-option>
                     </mat-select>
                   </mat-form-field>
                   <mat-form-field appearance="outline">

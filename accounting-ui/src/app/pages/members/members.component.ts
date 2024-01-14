@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
-  selector: 'app-users',
+  selector: 'app-members',
   template: `<router-outlet></router-outlet>`,
   styles: [
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UsersComponent
+export class MembersComponent
 {
 
 }

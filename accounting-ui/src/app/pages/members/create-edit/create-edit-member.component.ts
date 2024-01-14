@@ -2,28 +2,28 @@ import { ChangeDetectionStrategy, Component, Inject, OnInit } from '@angular/cor
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-import { CreateUserRequest, User } from '../../../core/models/user.model';
-import { IUserRepo } from '../../../core/repository/interfaces/user.interface';
+import { CreateMemberRequest, Member } from '../../../core/models/member.model';
+import { IMemberRepo } from '../../../core/repository/interfaces/member.interface';
 
 @Component({
-  selector: 'app-create-edit-user',
-  templateUrl: './create-edit-user.component.html',
-  styleUrls: ['./create-edit-user.component.scss'],
+  selector: 'app-create-edit-member',
+  templateUrl: './create-edit-member.component.html',
+  styleUrls: ['./create-edit-member.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CreateEditUserComponent implements OnInit
+export class CreateEditMemberComponent implements OnInit
 {
   createMode = true;
   editMode = false;
   form: FormGroup = new FormGroup({
     name: new FormControl('')
   });
-  model!: User;
+  model!: Member;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    @Inject('IUserRepo') private userRepo: IUserRepo
+    @Inject('IMemberRepo') private memberRepo: IMemberRepo
   )
   {
   }
@@ -37,41 +37,41 @@ export class CreateEditUserComponent implements OnInit
       this.createMode = false;
       this.editMode = true;
 
-      this.model = await firstValueFrom(this.userRepo.getById(id));
+      this.model = await firstValueFrom(this.memberRepo.getById(id));
 
       this.form.controls['name'].setValue(this.model.name);
     }
   }
 
-  private async createUser(): Promise<User>
+  private async createMember(): Promise<Member>
   {
-    const request: CreateUserRequest = this.form.value;
+    const request: CreateMemberRequest = this.form.value;
 
-    return await firstValueFrom(this.userRepo.create(request));
+    return await firstValueFrom(this.memberRepo.create(request));
   }
 
   async save(): Promise<void>
   {
     if (this.createMode)
     {
-      const response = await this.createUser();
-      this.router.navigate(['user/' + response.id]);
+      const response = await this.createMember();
+      this.router.navigate(['member/' + response.id]);
     }
 
     if (this.editMode)
     {
-      const request: User = {
+      const request: Member = {
         id: this.model.id,
         name: this.form.value.name
       };
-      await firstValueFrom(this.userRepo.edit(request));
-      this.router.navigate(['user/' + this.model.id]);
+      await firstValueFrom(this.memberRepo.edit(request));
+      this.router.navigate(['member/' + this.model.id]);
     }
   }
 
   async saveAndNew(): Promise<void>
   {
-    await this.createUser();
+    await this.createMember();
     this.form.reset();
   }
 }

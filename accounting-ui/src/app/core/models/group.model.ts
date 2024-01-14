@@ -1,16 +1,16 @@
 import { BaseModel } from "./base.model";
-import { User } from "./user.model";
+import { Member } from "./member.model";
 
 export class Group extends BaseModel
 {
   name!: string;
-  users!: User[];
+  members!: Member[];
 }
 
 export class CreateGroupRequest
 {
   name!: string;
-  users!: User[];
+  members!: Member[];
 }
 
 export class CreateGroupResponse extends Group

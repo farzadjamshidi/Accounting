@@ -5,8 +5,8 @@
     {{group.name}}
   </div>
 
-  <div>Users</div>
-  <div *ngFor="let user of group.users">{{user.name}}</div>
+  <div>Members</div>
+  <div *ngFor="let member of group.members">{{member.name}}</div>
 
   <button class="m-2" mat-raised-button color="primary" [routerLink]="['/group/list']">Group List</button>
 

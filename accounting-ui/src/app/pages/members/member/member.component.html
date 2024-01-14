@@ -1,0 +1,11 @@
+<p>member works!</p>
+
+<div>
+  {{model.name}}
+</div>
+
+<button class="m-2" mat-raised-button color="primary" [routerLink]="['/member/list']">Member List</button>
+
+<button class="m-2" mat-raised-button color="primary" [routerLink]="['edit']">Edit</button>
+
+<button class="m-2" mat-raised-button color="warn" (click)="deleteMember()">Delete</button>
