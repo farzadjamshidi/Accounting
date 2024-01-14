@@ -7,5 +7,5 @@ export class PostLoginRequest
 
 export class PostLoginResponse
 {
-  token!: string;
+  access_token!: string;
 }

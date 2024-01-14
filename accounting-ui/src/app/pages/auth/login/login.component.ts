@@ -41,7 +41,7 @@ export class LoginPageComponent
       this.authRepo.login(request)
     );
 
-    localStorage.setItem('token', response.token);
+    localStorage.setItem('token', response.access_token);
 
     setTimeout(() =>
     {

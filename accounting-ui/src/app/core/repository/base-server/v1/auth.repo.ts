@@ -38,12 +38,7 @@ export class AuthV1BaseServerRepo implements IAuthRepo
 
   login(request: PostLoginRequest): Observable<PostLoginResponse>
   {
-    const mockData: PostLoginResponse = {
-      token: 'test token'
-    };
-    return of(mockData);
-
-    const endpointUrl = this.repoUrl;
+    const endpointUrl = this.repoUrl + '/login';
     return this.http.post<PostLoginResponse>(endpointUrl, request);
   }
 
