@@ -1,16 +1,16 @@
 import { Column, Entity, ManyToOne } from "typeorm";
 import { BaseModel } from "./base.model";
 import { Expense } from "./expense.model";
-import { User } from "./user.model";
+import { Member } from "./member.model";
 
 @Entity()
 export class Consumer extends BaseModel
 {
-  @ManyToOne(() => User, user => user.consumers)
-  user: User;
+  @ManyToOne(() => Member, member => member.consumers)
+  member: Member;
 
   @Column()
-  userId: number;
+  memberId: number;
 
   @Column("double precision")
   share: number;

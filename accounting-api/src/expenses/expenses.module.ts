@@ -5,8 +5,8 @@ import { ConsumersService } from '../consumers/consumers.service';
 import { EventStatusService } from '../event-status/event-status.service';
 import { EventsService } from '../events/events.service';
 import { GroupsService } from '../groups/groups.service';
+import { MembersService } from '../members/members.service';
 import { PayersService } from '../payers/payers.service';
-import { UsersService } from '../users/users.service';
 import { ExpensesController } from './expenses.controller';
 import { ExpensesService } from './expenses.service';
 
@@ -20,7 +20,7 @@ import { ExpensesService } from './expenses.service';
     GroupsService,
     ConsumersService,
     PayersService,
-    UsersService
+    MembersService
   ],
 })
 export class ExpensesModule { }

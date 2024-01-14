@@ -10,10 +10,10 @@ export class Expense extends BaseModel
   @Column()
   name: string;
 
-  @OneToMany(() => Consumer, consumer => consumer.user)
+  @OneToMany(() => Consumer, consumer => consumer.member)
   consumers: Consumer[];
 
-  @OneToMany(() => Payer, payer => payer.user)
+  @OneToMany(() => Payer, payer => payer.member)
   payers: Payer[];
 
   @Column("double precision")

@@ -1,7 +1,7 @@
-import { User } from "../../app/models/user.model";
+import { Member } from "../../app/models/member.model";
 
 export class CreateGroupDto
 {
   name: string;
-  users!: User[];
+  members!: Member[];
 }

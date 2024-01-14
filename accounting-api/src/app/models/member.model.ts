@@ -5,7 +5,7 @@ import { Group } from './group.model';
 import { Payer } from './payer.model';
 
 @Entity()
-export class User extends BaseModel
+export class Member extends BaseModel
 {
   @Column()
   name: string;
@@ -13,12 +13,12 @@ export class User extends BaseModel
   @Column({ default: true })
   isActive: boolean;
 
-  @ManyToMany(() => Group, group => group.users)
+  @ManyToMany(() => Group, group => group.members)
   groups: Group[];
 
-  @OneToMany(() => Consumer, consumer => consumer.user)
+  @OneToMany(() => Consumer, consumer => consumer.member)
   consumers: Consumer[];
 
-  @OneToMany(() => Payer, payer => payer.user)
+  @OneToMany(() => Payer, payer => payer.member)
   payers: Payer[];
 }

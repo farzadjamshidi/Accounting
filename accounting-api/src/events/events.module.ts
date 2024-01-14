@@ -4,8 +4,8 @@ import { Event } from '../app/models/event.model';
 import { ConsumersService } from '../consumers/consumers.service';
 import { EventStatusService } from '../event-status/event-status.service';
 import { GroupsService } from '../groups/groups.service';
+import { MembersService } from '../members/members.service';
 import { PayersService } from '../payers/payers.service';
-import { UsersService } from '../users/users.service';
 import { EventsController } from './events.controller';
 import { EventsService } from './events.service';
 
@@ -18,7 +18,7 @@ import { EventsService } from './events.service';
     GroupsService,
     ConsumersService,
     PayersService,
-    UsersService
+    MembersService
   ],
 })
 export class EventsModule { }

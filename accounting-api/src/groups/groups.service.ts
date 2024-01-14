@@ -17,13 +17,13 @@ export class GroupsService
   {
     const group = new Group();
     group.name = createGroupDto.name;
-    group.users = createGroupDto.users;
+    group.members = createGroupDto.members;
     await this.dataSource.manager.save(group);
 
     return {
       id: group.id,
       name: group.name,
-      users: group.users
+      members: group.members
     };
   }
 
@@ -36,7 +36,7 @@ export class GroupsService
   {
     const group = await this.dataSource.manager.findOne(Group, {
       relations: {
-        users: true,
+        members: true,
       },
       where: { id: id }
     });

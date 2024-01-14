@@ -5,8 +5,8 @@ import { EventStatusModule } from '../event-status/event-status.module';
 import { EventsModule } from '../events/events.module';
 import { ExpensesModule } from '../expenses/expenses.module';
 import { GroupsModule } from '../groups/groups.module';
+import { MembersModule } from '../members/members.module';
 import { PayersModule } from '../payers/payers.module';
-import { UsersModule } from '../users/users.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CoreModule } from './core/core.module';
@@ -18,7 +18,7 @@ const appModules = [
   EventStatusModule,
   EventsModule,
   GroupsModule,
-  UsersModule
+  MembersModule
 ];
 @Module({
   imports: [
