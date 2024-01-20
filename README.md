@@ -25,6 +25,8 @@
 
 11) Run npm i convict @nestjs/typeorm typeorm pg
 to install TypeORM and postgre db.
+12) We can use "executor": "@nx/js:tsc" in project.json to generate separate js files for nest.js project.
+13) Add ormconfig.json and example for connecting to db for db:diagram and migrations.
 
 # Commands
 

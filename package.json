@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "db:diagram": "typeorm-uml ormconfig.json",
     "serve:api": "npx nx serve accounting-api",
     "serve:ui": "npx nx serve accounting-ui --open",
     "serve:all": "concurrently \"npm run serve:api\" \"npm run serve:ui\""
@@ -52,6 +53,7 @@
     "prettier": "^2.6.2",
     "ts-jest": "^29.1.0",
     "ts-node": "10.9.1",
+    "typeorm-uml": "^1.6.5",
     "typescript": "~5.2.2"
   },
   "dependencies": {

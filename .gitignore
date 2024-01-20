@@ -43,3 +43,4 @@ Thumbs.db
 
 # Configurations
 .env
+ormconfig.json
